@@ -1,0 +1,66 @@
+.no-logo-txt{
+    font-size: 15pt;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.custom-nav{
+    display: flex;
+    align-items: center;
+}
+.navbar,.custom-nav{
+    background-color: #131921;
+    color: #fff;
+    padding: 0.7rem 1rem;
+}
+.navbar-brand{
+    width: 6rem;
+    height: auto;
+}
+.header-search-block{
+    flex: 0 0 50%;
+    margin-left: 1.5rem;
+}
+.header-search-btn{
+    background-color: #febd69;
+    color: #000;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.header-search-dropdown-btn{
+    background-color:#f3f3f3;
+    color: #555;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.header-search-dropdown-btn:hover{
+    background-color:#f3f3f3;
+    color: rgb(41, 41, 41);
+}
+.search-box-input:focus,.header-search-dropdown-btn:focus {
+    box-shadow: none;
+}
+/* --------- Sub Navbar------------------ */
+.custom-sub-nav{
+    background-color: #232f3e;
+    color: #fff;
+}
+.sub-nav-list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 5px 1rem;
+    font-size: 10pt;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.sub-nav-list li{
+    padding: 5px 10px;
+    margin: 0 0.3em;
+    cursor: pointer;
+    border: 1px solid #232f3e;
+}
+.sub-nav-list li:hover,.sub-nav-list li.active{
+    border: 1px solid #fff;
+}
+/* --------- Sub Navbar------------------ */

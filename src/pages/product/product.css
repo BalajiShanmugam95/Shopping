@@ -1,0 +1,30 @@
+.product-details{
+    padding: 4rem;
+}
+.product-name-txt{
+    color: #0F1111;
+    font-size: 22pt;
+}
+.product-name-txt:hover{
+    color: #c45500;
+}
+.sup-currency{
+    top: -.5em;
+    font-size: 12px;
+    color: #B12704;
+    margin-right: 3px;
+}
+.current-price{
+    font-size: 21px;
+    color: #B12704;
+}
+.product-orginal-price{
+    font-size: 21px;
+    color: #565959;
+    margin-left: 5px;
+}
+.strike-price{
+    font-size: 13px;
+    color: #565959;
+    margin-left: 5px;
+}

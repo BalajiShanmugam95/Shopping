@@ -1,0 +1,129 @@
+.top-search-count{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 1rem;
+    font-size: 10.5pt;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search-result{
+    padding: 10px 15px;
+    min-height: 100vh;
+    display: grid;
+}
+.result-filter-by{
+    height: 100%;
+    width: 100%;
+    border-right: 2px solid #ddd;
+    padding-right: 10px;
+}
+.filter-by-title{
+    font-size: 12pt;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.option-set{
+    margin-top: 0.2rem;
+}
+.option-set label{
+    font-weight: 500;
+    font-size: 10pt;
+}
+.filter-big-checkbox{
+    height: 17px;
+    width: 15px;
+}
+.extra-big-checkbox{
+    height: 20px;
+    width: 20px;
+}
+.extra-big-checkbox:focus{
+    box-shadow: none;
+}
+.filter-custom-space{
+    margin: 2px 0;
+    font-size: 10pt;
+    display: flex;
+    align-items: center;
+}
+
+/* -------------------Product Card ----------------------------*/
+.product-info{
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.product-name{
+    color: #0F1111;
+    font-size: 20pt;
+}
+.product-name:hover{
+    color: #c45500;
+}
+.btn-compare,.btn-compare:hover,.btn-compare:active,.btn-compare:focus{
+    background-color: #B12704;
+    color: #fff;
+    font-size: 10pt;
+    padding: 6px 20px;
+}
+.limited-time-btn{
+    background-color: #B12704;
+    color: #fff;
+    font-size: 9pt;
+    padding: 6px 20px;
+}
+.price-txt{
+    display: flex;
+    align-items: baseline;
+    margin-top: 5px;
+}
+.sup-currency{
+    top: -.5em;
+    font-size: 12px;
+    color: #B12704;
+    margin-right: 3px;
+}
+.current-price{
+    font-size: 21px;
+    color: #B12704;
+}
+.orginal-price{
+    font-size: 13px;
+    color: #565959;
+    margin-left: 5px;
+}
+.money-save-txt{
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0F1111;
+}
+.save-coupon-block{
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 11pt;
+}
+.save-with-coupon{
+    background-color: #7fda69;
+    color: #111;
+    padding: 0px 7px;
+    margin-right: 5px;
+}
+.delivery-details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #565959;
+    font-size: 9.5pt;
+    margin-top: 10px;
+}
+.day-highlight{
+    font-weight: 700;
+}
+.result-divider{
+    margin: 1rem 0;
+    background-color: #ddd;
+    height: 2px;
+}
+/* -------------------Product Card ----------------------------*/
