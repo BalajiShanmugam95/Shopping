@@ -46,7 +46,13 @@
     display: flex;
     align-items: center;
 }
-
+.list-view-icon{
+    margin-right: 0.5rem;
+    font-size: 15pt;
+    cursor: pointer;
+    border: 1px solid;
+    padding: 0 5px;
+}
 /* -------------------Product Card ----------------------------*/
 .product-info{
     display:flex;
@@ -126,4 +132,20 @@
     background-color: #ddd;
     height: 2px;
 }
+.product-img{
+    width: 70%;
+}
+    /* list-grid-view */
+.list-grid-view .product-img{
+    width: 40%;
+}
+.list-grid-view .product-name{
+    font-size: 15pt;
+}
+.list-grid-view .product-container{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.15);
+    height: 100%;
+    padding: 20px;
+}
+    /* list-grid-view */
 /* -------------------Product Card ----------------------------*/

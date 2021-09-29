@@ -6,10 +6,15 @@ export const setProducts = (products) =>{
         payload:products
     }
 }
-
 export const getProduct = (product) =>{
     return{
         type:ActionTypes.SET_PRODUCT,
         payload:product
+    }
+}
+export const setCompareProduct = (products) =>{
+    return{
+        type:ActionTypes.SET_COMPARE_PRODUCTS,
+        payload:products
     }
 }

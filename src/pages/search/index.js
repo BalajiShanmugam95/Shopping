@@ -25,6 +25,8 @@ const Search = ()=>{
     const [activePrams, updateActivepram] = useState([""]);
     const [isLoading, setIsLoading] = useState(true);
     const [compareProduct, updateCompareProduct] = useState([]);
+    const [isGridView, updateGridView] = useState(false);
+
     const productList = useSelector((state)=> state["allproducts"]["product"]);
     const dispatch = useDispatch();
 
@@ -98,8 +100,11 @@ const Search = ()=>{
                 <Header queryChange={handleQueryChange} activePram={activePrams}/>
                 <div className="search-page">
                     <div className="top-search-count">
-                        <span>1-16 of over 1,000 results for <span style={{color:"#c45500"}}>{activePrams || "All"}</span></span>
-                        {compareProduct.length > 0 && <button onClick={()=>navToComparePage()} type="button" className="btn btn-light btn-compare">Compare</button>}
+                        <span>{`1-${productList.length} of over 1,000 results for`} <span style={{color:"#c45500"}}>{activePrams || "All"}</span></span>
+                        <div className="center-everything">
+                            <div className="list-view-icon"><i className={`${isGridView?"fas fa-bars":"fas fa-grip-horizontal"}`} onClick={()=>updateGridView(!isGridView)}></i></div>
+                            {compareProduct.length > 0 && <button onClick={()=>navToComparePage()} type="button" className="btn btn-light btn-compare">Compare</button>}
+                        </div>
                     </div>
                     <div className="search-result">
                         <div className="row m-0 h-100">
@@ -132,53 +137,55 @@ const Search = ()=>{
                                     !isLoading && !productList.length && <div className="text-center my-3">No Products Found....</div>
                                 }
                                 <div className="result-list">
+                                    <div className="row m-0">
                                     {
                                         productList.map((product,i)=>(
-                                            <div key={i}>
-                                                <div className="row m-0">
-                                                    <div className="col-md-3 d-flex">
-                                                        <div className="form-check">
-                                                            <input className="form-check-input extra-big-checkbox" onClick={(e)=>handleCompareCheckbox(e,product.id)} type="checkbox" />
+                                                <div className={`${isGridView?"col-md-4 list-grid-view mb-3":"col-md-12"}`} key={i}>
+                                                    <div className="row mx-0 product-container">
+                                                        <div className={`${isGridView?"col-md-12":"col-md-3"} d-dlex`}>
+                                                            <div className="form-check">
+                                                                <input className="form-check-input extra-big-checkbox" onClick={(e)=>handleCompareCheckbox(e,product.id)} type="checkbox" />
+                                                            </div>
+                                                            <img className="img-fluid d-block product-img m-auto" onClick={()=>navToProductPage(product.id)} alt="" src={product.image} />
                                                         </div>
-                                                        <img className="img-fluid d-block m-auto" onClick={()=>navToProductPage(product.id)} width="70%" alt="" src={product.image} />
-                                                    </div>
-                                                    <div className="col-md-9">
-                                                        <div className="product-info" onClick={()=>navToProductPage(product.id)}>
-                                                            <p className="product-name">{product.title}</p>
-                                                            <div className="limited-time-btn">
-                                                                <span>Limited time deal</span>
-                                                            </div>
-                                                            <div className="price-txt">
-                                                                <div>
-                                                                    <sup className="sup-currency">&#8377;</sup>
-                                                                    <span className="current-price">{product.price}</span>
+                                                        <div className={`${isGridView?"col-md-12":"col-md-9"}`}>
+                                                            <div className="product-info" onClick={()=>navToProductPage(product.id)}>
+                                                                <p className="product-name">{product.title}</p>
+                                                                <div className="limited-time-btn">
+                                                                    <span>Limited time deal</span>
                                                                 </div>
-                                                                <div className="orginal-price">
-                                                                    <strike>
-                                                                        <span>&#8377;</span>
-                                                                        <span>8,999</span>
-                                                                    </strike>
+                                                                <div className="price-txt">
+                                                                    <div>
+                                                                        <sup className="sup-currency">&#8377;</sup>
+                                                                        <span className="current-price">{product.price}</span>
+                                                                    </div>
+                                                                    <div className="orginal-price">
+                                                                        <strike>
+                                                                            <span>&#8377;</span>
+                                                                            <span>8,999</span>
+                                                                        </strike>
+                                                                    </div>
+                                                                    <div className="money-save-txt">
+                                                                        <span>Save ₹1,700 (19%)</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div className="money-save-txt">
-                                                                    <span>Save ₹1,700 (19%)</span>
+                                                                <div className="save-coupon-block d-none">
+                                                                    <div className="save-with-coupon">Save <span>&#8377;</span>300</div>
+                                                                    <span>with coupon</span>
                                                                 </div>
-                                                            </div>
-                                                            <div className="save-coupon-block">
-                                                                <div className="save-with-coupon">Save <span>&#8377;</span>300</div>
-                                                                <span>with coupon</span>
-                                                            </div>
-                                                            <div className="delivery-details">
-                                                                <span>Get it by <span className="day-highlight">Tomorrow,</span></span>
-                                                                <span className="day-highlight">September 17</span>
-                                                                <span>FREE Delivery by No Logo</span>
+                                                                <div className="delivery-details d-none">
+                                                                    <span>Get it by <span className="day-highlight">Tomorrow,</span></span>
+                                                                    <span className="day-highlight">September 17</span>
+                                                                    <span>FREE Delivery by No Logo</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {!isGridView && <div className="result-divider"></div>}
                                                 </div>
-                                                <div className="result-divider"></div>
-                                            </div>
-                                        ))
-                                    }
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

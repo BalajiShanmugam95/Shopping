@@ -1,7 +1,8 @@
 import React, {useEffect,useState} from 'react'
 import axios from "axios";
-
-const authPrams = {login: 'd68f4418d45f188701fbaf896e88eb6a', authtoken: 'c88bd383d87b54232cf8275b43da86db'};
+import Header from "../../components/header";
+import { setCompareProduct } from "../../redux/actions/productAction";
+import { useDispatch, useSelector } from 'react-redux';
 
 const getQueryText = (pram) =>{
     let query=""
@@ -18,32 +19,27 @@ const getQueryText = (pram) =>{
 
 const Compare = () => {
     const [compareableIds, setCompareableIds] = useState([]);
-    const [compareData,updateCompareData] = useState({});
-    
+
+    let compareData = useSelector((state)=> state.allproducts.compare_products)
+    const dispatch = useDispatch();
+
     const createInitialDataSet = (pids) =>{
-        let initData= {}
-
         pids.forEach(function (item, index) {
-            let tempdata= {}
             fetchProductDetails(item,(produrdetails)=>{
-                tempdata[item]=produrdetails;
+                dispatch(setCompareProduct({...compareData,[item]:produrdetails}))
             })
-
-            updateCompareData(tempdata)
-            console.log(initData)
         });
     }
     const fetchProductDetails = (id,callback)=>{
           const options = {
             method: 'GET',
-            url: 'https://api.jumpseller.com/v1/products/'+id+'.json',
-            params: authPrams,
+            url: 'https://fakestoreapi.com/products/'+id,
           };
 
           axios.request(options).then(function (res) {
-            callback(res.data)
+                callback(res.data)
             }).catch(function (error) {
-            console.log(error)
+                console.log(error)
             });
     }
     useEffect(() => {
@@ -54,18 +50,17 @@ const Compare = () => {
 
     return (
         <div className="compare-page">
+            <Header />
             <div className="container">
                 <div className="row m-0">
                     {
-                        compareableIds.map((item,i)=>{
-                            return<div className="col" key={i}>
+                        compareableIds.map((item,i)=>(
+                            <div className="col" key={i}>
                                 <div>
-                                    <div>{JSON.stringify(compareData)}
-                                        
-                                    </div>
+                                   {JSON.stringify(compareData[item])}
                                 </div>
                             </div>
-                        })
+                        ))
                     }
                 </div>
             </div>
