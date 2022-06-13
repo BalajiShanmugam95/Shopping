@@ -71,7 +71,7 @@ export default function Product() {
             {!isLoading &&<div className="product-details">
                 <div className="row m-0">
                     <div className="col-md-4 col-sm-12">
-                        <div className="center-center-everything">
+                        <div className="center-everything">
                             <img className="img-fluid d-block m-auto" width="70%" src={productDetail.image} alt="product" />
                         </div>
                     </div>

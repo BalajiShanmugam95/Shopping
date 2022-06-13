@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import axios from "axios";
 import Header from "../../components/header";
+import CompareTemplate  from './compareTemplate';
 import { setCompareProduct } from "../../redux/actions/productAction";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,30 +24,25 @@ const Compare = () => {
     let compareData = useSelector((state)=> state.allproducts.compare_products)
     const dispatch = useDispatch();
 
-    const createInitialDataSet = (pids) =>{
-        pids.forEach(function (item, index) {
-            fetchProductDetails(item,(produrdetails)=>{
-                dispatch(setCompareProduct({...compareData,[item]:produrdetails}))
-            })
-        });
-    }
-    const fetchProductDetails = (id,callback)=>{
-          const options = {
-            method: 'GET',
-            url: 'https://fakestoreapi.com/products/'+id,
-          };
-
-          axios.request(options).then(function (res) {
-                callback(res.data)
-            }).catch(function (error) {
-                console.log(error)
-            });
+    const fetchAllProductDetails = (ids)=>{
+        const urlAry = ids.map((id)=> 'https://fakestoreapi.com/products/'+id);
+        axios.all(urlAry.map(l => axios.get(l))).then(axios.spread(function (...res) {
+                let prdDetails={};
+                res.map((item)=>{
+                    prdDetails[item.data.id]=item.data;
+                })
+                
+                dispatch(setCompareProduct(prdDetails))
+        }));
     }
     useEffect(() => {
         let pids=JSON.parse(getQueryText('pids'));
         setCompareableIds(pids);
-        createInitialDataSet(pids)
+        fetchAllProductDetails(pids);
     }, [])
+
+    if(compareableIds.length == 0 || Object.keys(compareData).length !=compareableIds.length)
+        return null
 
     return (
         <div className="compare-page">
@@ -56,9 +52,7 @@ const Compare = () => {
                     {
                         compareableIds.map((item,i)=>(
                             <div className="col" key={i}>
-                                <div>
-                                   {JSON.stringify(compareData[item])}
-                                </div>
+                                <CompareTemplate prdDetails={compareData[item]} />
                             </div>
                         ))
                     }
